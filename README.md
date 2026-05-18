@@ -24,6 +24,44 @@ The dataset contains transaction-level data from a UK-based online retailer. It 
 
 ---
 
+## Methodology
+
+### 1. Data Cleaning
+- Removed missing 'CustomerID' values
+- Excluded cancelled invoices
+- Removed invalid transactions (negative quantities and prices)
+- Dropped duplicate records
+
+### 2. Feature Engineering (RFM)
+- **Recency:** Days since last purchase
+- **Frequency:** Number of unique transactions
+- **Monetary:** Total spend
+
+### 3. Data Transformation
+- Applied log transformation to reduce skewness
+- Standardized features using scaling
+
+---
+
+## Current Status
+
+The following stages have been completed:
+
+- Data loading and inspection
+- Data cleaning and preprocessing
+- RFM feature engineering
+- Exploratory data analysis
+- Data transformation (log scaling and standardization)
+
+Next steps:
+
+- K-Means clustering
+- Customer segment profiling
+- Business insights and recommendations
+- Power BI dashboard development
+
+---
+
 ## Tools
 
 - Python (pandas, NumPy)
