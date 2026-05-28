@@ -47,16 +47,25 @@ The dataset contains transaction-level data from a UK-based online retailer. It 
 
 The following stages have been completed:
 
-- Data loading and inspection
-- Data cleaning and preprocessing
-- RFM feature engineering
-- Exploratory data analysis
-- Data transformation (log scaling and standardization)
+- Data loading and inspection  
+- Data cleaning and preprocessing  
+- RFM feature engineering  
+- Exploratory data analysis  
+- Data transformation (log transformation and scaling)  
+- K-Means clustering  
+- Cluster profiling and segment labeling  
+
+Current customer segments identified:
+
+- High-Value Loyal Customers
+- Inactive Low-Value Customers
+- Recent Occasional Customers
+- Mid-Value Regular Customers
 
 Next steps:
 
-- K-Means clustering
-- Customer segment profiling
+- Revenue contribution analysis
+- Segment visualization
 - Business insights and recommendations
 - Power BI dashboard development
 
