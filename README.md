@@ -96,6 +96,7 @@ A final solution of **4 customer segments** was selected.
 * seaborn
 * scikit-learn
 * Jupyter Notebook
+* Streamlit
 
 ---
 
@@ -104,8 +105,14 @@ A final solution of **4 customer segments** was selected.
 ```text
 customer-segmentation-rfm/
 ├── data/
+│   └── processed/
+│       ├── rfm_customer_segments.csv
+│       └── cluster_profile.csv
 ├── notebooks/
+│   └── 01_customer_segmentation_rfm.ipynb
 ├── outputs/
+├── streamlit/
+│   └── app.py
 ├── README.md
 ├── requirements.txt
 └── .gitignore
@@ -127,14 +134,14 @@ customer-segmentation-rfm/
 
 ### In Progress
 
-* Power BI dashboard development
+* Interactive Streamlit application
 * Final project documentation
 * GitHub project packaging
 
 ---
 
-## Future Enhancements
+## Next Phase
 
-* Interactive Power BI dashboard
-* Additional customer behavior metrics
-* Dashboard-based business recommendations
+* Build an interactive Streamlit app
+* Add segment-level filtering and visual exploration
+* Prepare the repository for the portoflio presentation

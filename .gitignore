@@ -1,12 +1,9 @@
 # Python
 __pycache__/
 .ipynb_checkpoints/
-
-# Environment
 .env
-
-# macOS
 .DS_Store
 
-# Raw dataset
 data/raw/
+data/processed/
+outputs/
