@@ -215,7 +215,70 @@ st.markdown(
         .inactive-nav {
             margin-bottom: 10px;
         }
+
+        .mobile-blocker {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .mobile-blocker {
+                position: fixed;
+                inset: 0;
+                z-index: 9999999;
+                background: linear-gradient(180deg, #FFFFFF 0%, #F3F6FA 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 24px;
+                box-sizing: border-box;
+            }
+
+            .mobile-warning-card {
+                max-width: 430px;
+                background: #FFFFFF;
+                border: 1px solid #E5E7EB;
+                border-radius: 22px;
+                padding: 32px;
+                text-align: center;
+                box-shadow: 0 18px 40px rgba(15,23,42,.10);
+            }
+
+            .mobile-warning-icon {
+                font-size: 52px;
+            margin-bottom: 14px;
+            }
+
+            .mobile-warning-card h2 {
+                margin: 0 0 10px 0;
+                color: #111827;
+                font-size: 24px;
+            }
+
+            .mobile-warning-card p {
+                color: #4B5563;
+                font-size: 15px;
+                line-height: 1.7;
+                margin: 0;
+            }
+        }
     </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown(
+    """
+    <div class="mobile-blocker">
+        <div class="mobile-warning-card">
+            <div class="mobile-warning-icon">💻</div>
+            <h2>Desktop Experience Recommended</h2>
+            <p>
+                This interactive customer segmentation dashboard is designed for
+                laptop and desktop browsers. Please open it on a larger screen
+                to experience the full interactive dashboard.
+            </p>
+        </div>
+    </div>
     """,
     unsafe_allow_html=True,
 )
