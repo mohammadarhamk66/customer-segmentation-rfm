@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 from views.about_project import show_about_project
 from views.executive_overview import show_executive_overview
@@ -11,6 +12,65 @@ st.set_page_config(
     page_title="Customer Intelligence Platform",
     layout="wide",
     initial_sidebar_state="expanded",
+)
+
+components.html(
+    """
+    <script>
+        const isMobile =
+            /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)
+            || window.innerWidth < 900;
+
+        if (isMobile) {
+            document.body.innerHTML = `
+            <div style="
+                height:100vh;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                background:#F3F6FA;
+                font-family:Inter,sans-serif;
+                padding:24px;
+                box-sizing:border-box;
+            ">
+                <div style="
+                    max-width:430px;
+                    background:white;
+                    border-radius:22px;
+                    padding:32px;
+                    text-align:center;
+                    box-shadow:0 18px 40px rgba(0,0,0,.08);
+                    border:1px solid #E5E7EB;
+                ">
+                    <div style="font-size:54px;">💻</div>
+
+                    <h2 style="
+                        margin-top:14px;
+                        color:#111827;
+                    ">
+                        Desktop Experience Recommended
+                    </h2>
+
+                    <p style="
+                        color:#4B5563;
+                        line-height:1.7;
+                        font-size:15px;
+                    ">
+                        This interactive Customer Segmentation Dashboard has been
+                        designed and optimized for desktop and laptop browsers.
+
+                        <br><br>
+
+                        Please open the dashboard on a larger screen to experience
+                        all interactive visualizations and animations.
+                    </p>
+                </div>
+            </div>
+            `;
+        }
+    </script>
+    """,
+    height=0,
 )
 
 
