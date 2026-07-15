@@ -1398,12 +1398,12 @@ def animated_business_insights():
             }
 
             .outcome-card {
-                height: 430px;
+                height: 365px;
                 overflow: hidden;
             }
 
             .impact-table-wrapper {
-                height: 340px;
+                height: 255px;
                 overflow-y: auto;
                 border: 1px solid #E5E7EB;
                 border-radius: 12px;
@@ -1708,8 +1708,8 @@ def animated_business_insights():
             renderStrategy("retain");
         </script>
         """,
-        height=860,
-        scrolling=False,
+        height=820,
+        scrolling=True,
     )
 
 def animated_about_project():
