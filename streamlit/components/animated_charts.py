@@ -1398,12 +1398,12 @@ def animated_business_insights():
             }
 
             .outcome-card {
-                height: 365px;
+                height: 430px;
                 overflow: hidden;
             }
 
             .impact-table-wrapper {
-                height: 285px;
+                height: 340px;
                 overflow-y: auto;
                 border: 1px solid #E5E7EB;
                 border-radius: 12px;
