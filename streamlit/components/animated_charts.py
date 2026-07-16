@@ -920,16 +920,42 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
         </div>
         """
 
+    monetary_q1 = segment_customers["Monetary"].quantile(0.25)
+    monetary_q3 = segment_customers["Monetary"].quantile(0.75)
+
     table_rows = ""
+
     for _, row in segment_customers.iterrows():
+        monetary = float(row["Monetary"])
+
+        if monetary >= monetary_q3:
+                value_class = "value-high"
+                value_label = "High"
+    
+        elif monetary <= monetary_q1:
+                value_class = "value-low"
+                value_label = "Low"
+        
+        else:
+            value_class = "value-mid"
+            value_label = "Medium"
+
         table_rows += f"""
-        <tr>
-            <td>{row["CustomerID"]}</td>
-            <td>{row["Recency"]}</td>
-            <td>{row["Frequency"]}</td>
-            <td>£{row["Monetary"]:,.0f}</td>
-            <td>{row["Segment"]}</td>
-        </tr>
+            <tr>
+                <td>{row["CustomerID"]}</td>
+                <td>{row["Recency"]}</td>
+                <td>{row["Frequency"]}</td>
+                <td>
+                    <span class="money-pill {value_class}">
+                        £{monetary:,.0f}
+                    </span>
+                </td>
+                <td>
+                    <span class="value-tag {value_class}">
+                        {value_label}
+                    </span>
+                </td>
+            </tr>
         """
 
     components.html(
@@ -994,7 +1020,7 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
                                 <th>Recency</th>
                                 <th>Frequency</th>
                                 <th>Monetary</th>
-                                <th>Segment</th>
+                                <th>Value Tier</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1184,6 +1210,41 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
 
             tbody tr:hover {{
                 background: #F8FAFC;
+            }}
+
+            .money-pill,
+            .value-tag {{
+                display: inline-flex;
+                align-items: center;
+                border-radius: 999px;
+                font-weight: 800;
+                font-size: 12px;
+            }}
+
+            .money-pill {{
+                padding: 6px 10px;
+            }}
+
+            .value-tag {{
+                padding: 5px 9px;
+            }}
+
+            .value-high {{
+                background: #DCFCE7;
+                color: #166534;
+                border: 1px solid #BBF7D0;
+            }}
+
+            .value-mid {{
+                background: #FEF3C7;
+                color: #92400E;
+                border: 1px solid #FDE68A;
+            }}
+
+            .value-low {{
+                background: #FEE2E2;
+                color: #991B1B;
+                border: 1px solid #FECACA;
             }}
 
             @keyframes fadeIn {{
