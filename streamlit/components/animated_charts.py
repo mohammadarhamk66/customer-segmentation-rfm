@@ -1392,11 +1392,13 @@ def animated_business_insights():
 
             <div class="scenario-card">
                 <div class="scenario-eyebrow">Business Scenario</div>
-                <div class="scenario-title">The business has 4 customer groups, but limited marketing budget.</div>
+                <div class="scenario-title">
+                    The business has four customer groups, but limited marketing budget.
+                </div>
                 <div class="scenario-text">
                     High-value loyal customers generate most revenue, mid-value customers show growth potential,
                     recent occasional customers may become repeat buyers, and inactive low-value customers require
-                    careful cost control. Choose the strategy you would priortize first and compare the expected impact.
+                    careful cost control. Choose the strategy you would prioritize first and compare the expected impact.
                 </div>
             </div>
 
@@ -1473,10 +1475,11 @@ def animated_business_insights():
             }
 
             .strategy-header {
-                margin-bottom: 1.4rem;
+                margin-bottom: 1.2rem;
             }
 
-            .strategy-eyebrow {
+            .strategy-eyebrow,
+            .scenario-eyebrow {
                 font-size: 12px;
                 font-weight: 800;
                 letter-spacing: .08em;
@@ -1497,6 +1500,29 @@ def animated_business_insights():
                 color: #6B7280;
                 line-height: 1.5;
                 max-width: 860px;
+            }
+
+            .scenario-card {
+                background: #FFFFFF;
+                border: 1px solid #E5E7EB;
+                border-left: 5px solid #C97A28;
+                border-radius: 18px;
+                padding: 18px 22px;
+                margin: 0 0 1.4rem 0;
+                box-shadow: 0 8px 24px rgba(15,23,42,.04);
+            }
+
+            .scenario-title {
+                font-size: 18px;
+                font-weight: 900;
+                color: #111827;
+                margin-bottom: 8px;
+            }
+
+            .scenario-text {
+                font-size: 14px;
+                line-height: 1.6;
+                color: #4B5563;
             }
 
             .strategy-tabs {
@@ -1553,27 +1579,16 @@ def animated_business_insights():
 
             .actions-card {
                 min-height: 235px;
-                max-height: 250px;
-                overflow-y: auto;
             }
 
             .outcome-card {
-                height: 395px;
-                overflow: hidden;
+                overflow: visible;
             }
 
             .impact-table-wrapper {
-                height: 305px;
-                overflow-y: auto;
                 border: 1px solid #E5E7EB;
                 border-radius: 12px;
-            }
-
-            .impact-table-wrapper thead th {
-                position: sticky;
-                top: 0;
-                background: #F8FAFC;
-                z-index: 2;
+                overflow: hidden;
             }
 
             .strategy-label {
@@ -1682,6 +1697,7 @@ def animated_business_insights():
                 font-weight: 850;
                 padding: 12px 10px;
                 border-bottom: 1px solid #E5E7EB;
+                background: #F8FAFC;
             }
 
             td {
@@ -1691,6 +1707,10 @@ def animated_business_insights():
                 font-weight: 600;
                 line-height: 1.4;
                 vertical-align: top;
+            }
+
+            tbody tr:last-child td {
+                border-bottom: none;
             }
 
             td:nth-child(2) {
@@ -1708,38 +1728,6 @@ def animated_business_insights():
                 font-size: 14px;
                 line-height: 1.6;
                 color: #374151;
-            }
-
-            .scenario-card {
-                background: #FFFFFF;
-                border: 1px solid #E5E7EB;
-                border-left: 5px solid #C97A28;
-                border-radius: 18px;
-                padding: 18px 22px;
-                margin: 0 0 1.4rem 0;
-                box-shadow: 0 8px 24px rgba(15,23,42,.04);
-            }
-
-            .scenario-eyebrow {
-                font-size: 12px;
-                font-weight: 900;
-                color: #C97A28;
-                text-transform: uppercase;
-                letter-spacing: .08em;
-                margin-bottom: 6px;
-            }
-
-            .scenario-title {
-                font-size: 18px;
-                font-weight: 900;
-                color: #111827;
-                margin-bottom: 8px;
-            }
-
-            .scenario-text {
-                font-size: 14px;
-                line-height: 1.6;
-                color: #4B5563;
             }
 
             @keyframes fadeIn {
@@ -1900,7 +1888,7 @@ def animated_business_insights():
             renderStrategy("retain");
         </script>
         """,
-        height=1060,
+        height=1020,
         scrolling=False,
     )
 
