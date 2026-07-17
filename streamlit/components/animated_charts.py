@@ -1710,6 +1710,38 @@ def animated_business_insights():
                 color: #374151;
             }
 
+            .scenario-card {
+                background: #FFFFFF;
+                border: 1px solid #E5E7EB;
+                border-left: 5px solid #C97A28;
+                border-radius: 18px;
+                padding: 18px 22px;
+                margin: 0 0 1.4rem 0;
+                box-shadow: 0 8px 24px rgba(15,23,42,.04);
+            }
+
+            .scenario-eyebrow {
+                font-size: 12px;
+                font-weight: 900;
+                color: #C97A28;
+                text-transform: uppercase;
+                letter-spacing: .08em;
+                margin-bottom: 6px;
+            }
+
+            .scenario-title {
+                font-size: 18px;
+                font-weight: 900;
+                color: #111827;
+                margin-bottom: 8px;
+            }
+
+            .scenario-text {
+                font-size: 14px;
+                line-height: 1.6;
+                color: #4B5563;
+            }
+
             @keyframes fadeIn {
                 from { opacity: 0; transform: translateY(10px); }
                 to { opacity: 1; transform: translateY(0); }
