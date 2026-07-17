@@ -920,6 +920,23 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
         </div>
         """
 
+    top_customers = segment_customers.sort_values("Monetary", ascending=False).head(3)
+    low_customers = segment_customers.sort_values("Monetary", ascending=True).head(3)
+
+    def build_customer_summary_rows(customers):
+        rows = ""
+        for _, customer in customers.iterrows():
+            rows += f"""
+            <div class="summary-row">
+                <span>Customer {customer["CustomerID"]}</span>
+                <strong>£{float(customer["Monetary"]):,.0f}</strong>
+            </div>
+            """
+        return rows
+
+    top_customers_html = build_customer_summary_rows(top_customers)
+    low_customers_html = build_customer_summary_rows(low_customers)
+
     monetary_q1 = segment_customers["Monetary"].quantile(0.25)
     monetary_q3 = segment_customers["Monetary"].quantile(0.75)
 
@@ -929,33 +946,31 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
         monetary = float(row["Monetary"])
 
         if monetary >= monetary_q3:
-                value_class = "value-high"
-                value_label = "High"
-    
+            value_class = "value-high"
+            value_label = "High"
         elif monetary <= monetary_q1:
-                value_class = "value-low"
-                value_label = "Low"
-        
+            value_class = "value-low"
+            value_label = "Low"
         else:
             value_class = "value-mid"
             value_label = "Medium"
 
         table_rows += f"""
-            <tr>
-                <td>{row["CustomerID"]}</td>
-                <td>{row["Recency"]}</td>
-                <td>{row["Frequency"]}</td>
-                <td>
-                    <span class="money-pill {value_class}">
-                        £{monetary:,.0f}
-                    </span>
-                </td>
-                <td>
-                    <span class="value-tag {value_class}">
-                        {value_label}
-                    </span>
-                </td>
-            </tr>
+        <tr>
+            <td>{row["CustomerID"]}</td>
+            <td>{row["Recency"]}</td>
+            <td>{row["Frequency"]}</td>
+            <td>
+                <span class="money-pill {value_class}">
+                    £{monetary:,.0f}
+                </span>
+            </td>
+            <td>
+                <span class="value-tag {value_class}">
+                    {value_label}
+                </span>
+            </td>
+        </tr>
         """
 
     components.html(
@@ -994,7 +1009,7 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
                             Customer Records
                         </div>
                         <div class="detail-title">Sample Customer Records</div>
-                        <div class="detail-subtitle">
+                        <div class="records-subtitle">
                             A sample of customer-level records used to validate the segment profile and monetary value tiers.
                         </div>
                     </div>
@@ -1006,6 +1021,18 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
                         <button id="fullscreen-btn" class="fullscreen-btn">
                             Full Screen
                         </button>
+                    </div>
+                </div>
+
+                <div class="customer-summary-grid">
+                    <div class="customer-summary-card high-summary">
+                        <div class="summary-label">Top 3 Highest Monetary Customers</div>
+                        {top_customers_html}
+                    </div>
+
+                    <div class="customer-summary-card low-summary">
+                        <div class="summary-label">Top 3 Lowest Monetary Customers</div>
+                        {low_customers_html}
                     </div>
                 </div>
 
@@ -1080,17 +1107,18 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
                 line-height: 1.25;
             }}
 
+            .detail-text {{
+                font-size: 14px;
+                line-height: 1.6;
+                color: #374151;
+            }}
+
             .records-subtitle {{
                 font-size: 13px;
                 color: #6B7280;
                 line-height: 1.5;
                 margin-top: -4px;
-            }}
-
-            .detail-text {{
-                font-size: 14px;
-                line-height: 1.6;
-                color: #374151;
+                max-width: 720px;
             }}
 
             .actions-list {{
@@ -1158,6 +1186,57 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
                 cursor: pointer;
             }}
 
+            .customer-summary-grid {{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+                margin: 18px 0 16px 0;
+            }}
+
+            .customer-summary-card {{
+                background: #F8FAFC;
+                border: 1px solid #E5E7EB;
+                border-radius: 14px;
+                padding: 14px;
+            }}
+
+            .high-summary {{
+                border-left: 4px solid #16A34A;
+            }}
+
+            .low-summary {{
+                border-left: 4px solid #DC2626;
+            }}
+
+            .summary-label {{
+                font-size: 12px;
+                font-weight: 900;
+                color: #6B7280;
+                text-transform: uppercase;
+                letter-spacing: .06em;
+                margin-bottom: 10px;
+            }}
+
+            .summary-row {{
+                display: flex;
+                justify-content: space-between;
+                gap: 12px;
+                padding: 8px 0;
+                border-bottom: 1px solid #E5E7EB;
+                font-size: 13px;
+                font-weight: 700;
+                color: #374151;
+            }}
+
+            .summary-row:last-child {{
+                border-bottom: none;
+            }}
+
+            .summary-row strong {{
+                color: #111827;
+                white-space: nowrap;
+            }}
+
             .table-search {{
                 width: 100%;
                 border: 1px solid #E5E7EB;
@@ -1174,7 +1253,7 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
             }}
 
             .table-wrapper {{
-                max-height: 310px;
+                max-height: 300px;
                 overflow-y: auto;
                 border: 1px solid #E5E7EB;
                 border-radius: 14px;
@@ -1292,7 +1371,7 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
             }});
         </script>
         """,
-        height=760,
+        height=960,
         scrolling=False,
     )
 
@@ -1469,12 +1548,12 @@ def animated_business_insights():
             }
 
             .outcome-card {
-                height: 335px;
+                height: 430px;
                 overflow: hidden;
             }
 
             .impact-table-wrapper {
-                height: 245px;
+                height: 330px;
                 overflow-y: auto;
                 border: 1px solid #E5E7EB;
                 border-radius: 12px;
@@ -1779,7 +1858,7 @@ def animated_business_insights():
             renderStrategy("retain");
         </script>
         """,
-        height=760,
+        height=930,
         scrolling=False,
     )
 
