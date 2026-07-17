@@ -1390,6 +1390,16 @@ def animated_business_insights():
                 </div>
             </div>
 
+            <div class="scenario-card">
+                <div class="scenario-eyebrow">Business Scenario</div>
+                <div class="scenario-title">The business has 4 customer groups, but limited marketing budget.</div>
+                <div class="scenario-text">
+                    High-value loyal customers generate most revenue, mid-value customers show growth potential,
+                    recent occasional customers may become repeat buyers, and inactive low-value customers require
+                    careful cost control. Choose the strategy you would priortize first and compare the expected impact.
+                </div>
+            </div>
+
             <div class="strategy-tabs">
                 <button class="strategy-tab active" data-key="retain">Retain</button>
                 <button class="strategy-tab" data-key="grow">Grow</button>
