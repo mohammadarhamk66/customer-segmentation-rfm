@@ -1858,7 +1858,7 @@ def animated_business_insights():
             renderStrategy("retain");
         </script>
         """,
-        height=835,
+        height=870,
         scrolling=False,
     )
 
