@@ -639,7 +639,7 @@ def animated_distribution_panel(cluster_profile):
             }});
         </script>
         """,
-        height=960,
+        height=1040,
         scrolling=False,
     )
 
@@ -993,7 +993,10 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
                         <div class="detail-eyebrow" style="color:{color};">
                             Customer Records
                         </div>
-                        <div class="detail-title">Customers in this segment</div>
+                        <div class="detail-title">Sample Customer Records</div>
+                        <div class="detail-subtitle">
+                            A sample of customer-level records used to validate the segment profile and monetary value tiers.
+                        </div>
                     </div>
 
                     <div class="records-actions">
@@ -1075,6 +1078,13 @@ def animated_segment_details(selected_segment, profile_text, recommended_actions
                 color: #111827;
                 margin-bottom: 10px;
                 line-height: 1.25;
+            }}
+
+            .records-subtitle {{
+                font-size: 13px;
+                color: #6B7280;
+                line-height: 1.5;
+                margin-top: -4px;
             }}
 
             .detail-text {{
@@ -1459,12 +1469,12 @@ def animated_business_insights():
             }
 
             .outcome-card {
-                height: 365px;
+                height: 335px;
                 overflow: hidden;
             }
 
             .impact-table-wrapper {
-                height: 255px;
+                height: 245px;
                 overflow-y: auto;
                 border: 1px solid #E5E7EB;
                 border-radius: 12px;
@@ -1769,8 +1779,8 @@ def animated_business_insights():
             renderStrategy("retain");
         </script>
         """,
-        height=820,
-        scrolling=True,
+        height=760,
+        scrolling=False,
     )
 
 def animated_about_project():
