@@ -9,7 +9,7 @@ from utils.data_loader import load_data
 
 
 st.set_page_config(
-    page_title="Customer Intelligence Platform",
+    page_title="Customer Intelligence Platform (Test)",
     layout="wide",
     initial_sidebar_state="expanded",
 )
