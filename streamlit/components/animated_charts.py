@@ -1900,7 +1900,7 @@ def animated_business_insights():
             renderStrategy("retain");
         </script>
         """,
-        height=870,
+        height=900,
         scrolling=False,
     )
 
