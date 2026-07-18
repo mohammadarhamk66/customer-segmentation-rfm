@@ -2030,7 +2030,7 @@ def animated_business_insights():
             renderStrategy("retain");
         </script>
         """,
-        height=1200,
+        height=1300,
         scrolling=False,
     )
 
