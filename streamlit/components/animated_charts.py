@@ -1383,68 +1383,131 @@ def animated_business_insights():
         <div class="strategy-app">
 
             <div class="strategy-header">
-                <div class="strategy-eyebrow">Strategy Simulator</div>
-                <div class="strategy-title">Choose a business strategy</div>
+                <div class="strategy-eyebrow">Business Strategy Simulator</div>
+
+                <div class="strategy-title">
+                    Which customer strategy would you priortize?
+                </div>
+
                 <div class="strategy-subtitle">
-                    Explore estimated business impact for each customer strategy. These are scenario-based estimates, not predictive model outputs.
+                    Review the business scenario, select a strategy, and compare its
+                    estimated commercial impact.
                 </div>
             </div>
 
             <div class="scenario-card">
                 <div class="scenario-eyebrow">Business Scenario</div>
+
                 <div class="scenario-title">
-                    The business has four customer groups, but limited marketing budget.
+                    Marketing resources are limited, but every customer segment presents 
+                    a different opportunity.
                 </div>
+
                 <div class="scenario-text">
-                    High-value loyal customers generate most revenue, mid-value customers show growth potential,
-                    recent occasional customers may become repeat buyers, and inactive low-value customers require
-                    careful cost control. Choose the strategy you would prioritize first and compare the expected impact.
+                    High-value loyal customers generate the strongest revenue contribution. 
+                    Mid-value regular customers show growth potential. Recent occasional
+                    customers may be converted into repeat buyers, while inactive low-value
+                    customers require careful cost control.
+                </div>
+
+                <div class="scenario-questions">
+                    Based on these customer behaviors, which strategy should the business
+                    priortize?
                 </div>
             </div>
 
-            <div class="strategy-tabs">
-                <button class="strategy-tab active" data-key="retain">Retain</button>
-                <button class="strategy-tab" data-key="grow">Grow</button>
-                <button class="strategy-tab" data-key="convert">Convert</button>
-                <button class="strategy-tab" data-key="reengage">Re-engage</button>
+            <div class="strategy-selection">
+                <div class="selection-label">Select a strategy</div>
+                
+                <div class="strategy-tabs" role="group" aria-label="Customer strategies">
+                    <button type="button" class="strategy-tab active" data-key="retain" aria-pressed="true">
+                        Retain
+                    </button>
+
+                    <button type="button" class="strategy-tab active" data-key="grow" aria-pressed="false">
+                        Grow
+                    </button>
+
+                    <button type="button" class="strategy-tab active" data-key="convert" aria-pressed="false">
+                        Convert
+                    </button>
+
+                    <button type="button" class="strategy-tab active" data-key="reengage" aria-pressed="false">
+                        Re-Engage
+                    </button>
+                </div>
             </div>
 
-            <div class="strategy-panel">
+            <div id="strategy-panel" class="strategy-panel" aria-live="polite">
 
                 <div class="main-card">
-                    <div id="strategy-label" class="strategy-label">Retention Priority</div>
-                    <div id="strategy-name" class="strategy-name">Retain High-Value Loyal Customers</div>
+                    <div id="strategy-label" class="strategy-label">
+                        Retention Priority
+                    </div>
+
+                    <div id="strategy-name" class="strategy-name">
+                        Retain High-Value Loyal Customers
+                    </div>
+
                     <div id="strategy-objective" class="strategy-objective">
-                        Protect the customer group generating the majority of revenue by strengthening loyalty and reducing churn risk.
+                        Protect the customer group generating the majority of revenue 
+                        by strengthening loyalty and reducing churn risk.
                     </div>
 
                     <div class="impact-grid">
                         <div class="impact-card">
-                            <span id="impact-label-1">Revenue Stability</span>
-                            <strong id="impact-1">+10–15%</strong>
+                            <span id="impact-label-1">
+                                Revenue Stability
+                            </span>
+
+                            <strong id="impact-1">
+                                +10–15%
+                            </strong>
                         </div>
+
                         <div class="impact-card">
-                            <span id="impact-label-2">Customer Lifetime Value</span>
-                            <strong id="impact-2">+8–12%</strong>
+                            <span id="impact-label-2">
+                                Customer Lifetime Value
+                            </span>
+                            
+                            <strong id="impact-2">
+                                +8–12%
+                            </strong>
                         </div>
+
                         <div class="impact-card">
-                            <span id="impact-label-3">Churn Risk</span>
-                            <strong id="impact-3">-10–15%</strong>
+                            <span id="impact-label-3">
+                                Churn Risk
+                            </span>
+
+                            <strong id="impact-3">
+                                -10–15%
+                            </strong>
                         </div>
                     </div>
 
                     <div class="impact-note">
-                        Estimated directional impact based on business strategy assumptions, not a forecasting model.
+                        Estimated directional impact based on business strategy 
+                        assumptions, not a forecasting model.
                     </div>
                 </div>
 
                 <div class="actions-card">
-                    <div class="section-title">Recommended Actions</div>
-                    <div id="actions-list" class="actions-list"></div>
+                    <div class="section-title">
+                        Recommended Actions
+                    </div>
+
+                    <div 
+                        id="actions-list" 
+                        class="actions-list"
+                        ></div>
                 </div>
 
                 <div class="outcome-card">
-                    <div class="section-title">Expected Impact Table</div>
+                    <div class="section-title">
+                        Expected Business Impact
+                    </div>
+
                     <div class="impact-table-wrapper">
                         <table>
                             <thead>
@@ -1525,11 +1588,32 @@ def animated_business_insights():
                 color: #4B5563;
             }
 
+            .scenario-question {
+                margin-top: 14px;
+                padding: 11px 14px;
+                background: #FFF7ED;
+                border-radius: 12px;
+                color: #9A5B1A;
+                font-size: 13px;
+                font-weight: 800;
+                line-height: 1.45;
+            }
+
+            .strategy-selection {
+                margin-bottom: 1.4rem;
+            }
+
+            .selection-label {
+                margin-bottom: 9px;
+                color: #374151;
+                font-size: 13px;
+                font-weight: 800;
+            }
+
             .strategy-tabs {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
                 gap: 1rem;
-                margin-bottom: 1.4rem;
             }
 
             .strategy-tab {
@@ -1559,6 +1643,8 @@ def animated_business_insights():
                 display: grid;
                 grid-template-columns: 1.2fr 1fr;
                 gap: 1.3rem;
+
+                align-items: start;
             }
 
             .main-card,
@@ -1578,17 +1664,21 @@ def animated_business_insights():
             }
 
             .actions-card {
-                min-height: 235px;
+                align-self: start;
+                height: fit-content;
             }
 
             .outcome-card {
-                overflow: visible;
+                align-self: start;
+                overflow: hidden;
             }
 
             .impact-table-wrapper {
+                width: 100%;
                 border: 1px solid #E5E7EB;
-                border-radius: 12px;
+                border-radius: 14px;
                 overflow: hidden;
+                background: #FFFFFF;
             }
 
             .strategy-label {
@@ -1730,9 +1820,32 @@ def animated_business_insights():
                 color: #374151;
             }
 
+            .fade-content {
+                animation: fadeContent .25s ease;
+            }
+
+            @keyframes fadeContent {
+                from {
+                    opacity: 0;
+                    transform: translateY(8px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
             @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(10px); }
-                to { opacity: 1; transform: translateY(0); }
+                from {
+                    opacity: 0; 
+                    transform: translateY(10px);
+                }
+
+                to { 
+                    opacity: 1; 
+                    transform: translateY(0); 
+                }
             }
         </style>
 
@@ -1845,10 +1958,32 @@ def animated_business_insights():
             function renderStrategy(key) {
                 const s = strategies[key];
 
+                const panel = document.getElementById(
+                    "strategy-panel"
+                );
+
+                panel.classList.remove(
+                    "fade-content"
+                );
+
+                void panel.offsetWidth;
+
+                panel.classList.add(
+                    "fade-content"
+                );
+
                 root.style.setProperty("--active-color", s.color);
 
                 tabs.forEach(tab => {
-                    tab.classList.toggle("active", tab.dataset.key === key);
+                    const active = tab.dataset.key === key;
+
+                    tab.classlist.toggle("active", active);
+
+                    tab.setAttribute(
+                        "aria-pressed",
+                        active
+                    );
+                
                 });
 
                 label.textContent = s.label;
@@ -1882,7 +2017,15 @@ def animated_business_insights():
             }
 
             tabs.forEach(tab => {
-                tab.addEventListener("click", () => renderStrategy(tab.dataset.key));
+
+                tab.addEventListener("click", () => {
+                    
+                    renderStrategy(
+                        tab.dataset.key
+                    );
+
+                });
+            
             });
 
             renderStrategy("retain");
