@@ -1,147 +1,246 @@
-# Customer Segmentation using RFM Analysis and K-Means Clustering
+# Customer Intelligence Platform
 
-## Project Overview
+An interactive Business Intelligence dashboard that combines **RFM Analysis**, **K-Means Clustering**, and **executive-focused storytelling** to transform customer transaction data into actionable business insights.
 
-This project applies customer segmentation techniques to transaction-level retail data to identify distinct customer groups based on purchasing behavior.
-
-Using RFM (Recency, Frequency, Monetary) analysis and K-Means clustering, customers were grouped into segments with different behavioral and revenue characteristics.
-
-The goal is to better understand customer value distribution and demonstrate how behavioral segmentation can support business decision-making.
+🚀 **Live Application:**  
+https://customer-segmentation-rfm-customer-intelligence.streamlit.app/
 
 ---
 
-## Business Problem
+# Project Overview
 
-Not all customers contribute equally to business performance.
+The Customer Intelligence Platform helps businesses understand customer behaviour through intelligent customer segmentation and interactive visual analytics.
 
-The objective of this project is to:
+Using **Recency, Frequency, and Monetary (RFM) Analysis** together with **K-Means Clustering**, customers are segmented into meaningful business groups that executives can easily explore and act upon.
 
-* Identify distinct customer segments based on purchasing behavior
-* Understand how different customer groups contribute to revenue
-* Highlight opportunities for retention, growth, and customer engagement
-* Demonstrate an end-to-end analytics workflow from raw data to business insights
+Rather than presenting only analytical results, the dashboard focuses on translating data into business decisions through an interactive executive experience.
 
 ---
 
-## Dataset
+# Dashboard Modules
 
-**Dataset:** UCI Online Retail Dataset
+## About Project
 
-**Source:** https://archive.ics.uci.edu/dataset/352/online+retail
+Provides an overview of the project including:
 
-The dataset contains transaction-level records from a UK-based online retailer.
-
----
-
-## Methodology
-
-### 1. Data Cleaning and Preprocessing
-
-* Removed records with missing Customer IDs
-* Removed cancelled invoices
-* Removed invalid transactions
-* Removed duplicate records
-* Created a TotalSpend feature
-
-### 2. RFM Feature Engineering
-
-Customer behavior was summarized using:
-
-* Recency
-* Frequency
-* Monetary
-
-### 3. Data Transformation
-
-* Log transformation
-* StandardScaler
-
-### 4. Customer Segmentation
-
-K-Means clustering was applied to the transformed RFM dataset.
-
-Cluster selection was supported using:
-
-* Elbow Method
-* Silhouette Score
-
-A final solution of **4 customer segments** was selected.
+- Business problem
+- Analytical workflow
+- Methodology
+- Technology stack
+- Dashboard architecture
 
 ---
 
-## Key Findings
+## Executive Overview
 
-| Segment                      | Customer Share | Revenue Share |
-| ---------------------------- | -------------- | ------------- |
-| High-Value Loyal Customers   | 16.44%         | 64.89%        |
-| Mid-Value Regular Customers  | 26.88%         | 23.64%        |
-| Recent Occasional Customers  | 19.29%         | 5.25%         |
-| Inactive Low-Value Customers | 37.39%         | 6.22%         |
+Designed for executive stakeholders to quickly understand customer performance.
 
-### Insights
+Features include:
 
-* High-Value Loyal Customers generate the majority of total revenue despite representing a relatively small share of customers.
-* Inactive Low-Value Customers represent the largest customer segment but contribute comparatively little revenue.
-* Mid-Value Regular Customers contribute nearly one-quarter of total revenue.
-* Recent Occasional Customers may represent a growth opportunity.
+- Executive KPI cards
+- Revenue distribution
+- Customer distribution
+- Segment performance
+- Interactive segment filtering
+- Executive business insights
 
----
-
-## Tools Used
-
-* Python
-* pandas
-* NumPy
-* matplotlib
-* seaborn
-* scikit-learn
-* Jupyter Notebook
-* Streamlit
+Selecting a customer segment automatically updates the dashboard with segment-specific insights.
 
 ---
 
-## Repository Structure
+## Segment Explorer
 
-```text
-customer-segmentation-rfm/
-├── data/
-│   └── processed/
-│       ├── rfm_customer_segments.csv
-│       └── cluster_profile.csv
-├── notebooks/
-│   └── 01_customer_segmentation_rfm.ipynb
-├── outputs/
-├── streamlit/
-│   └── app.py
-├── README.md
-├── requirements.txt
-└── .gitignore
+Allows users to investigate individual customer segments in greater detail.
+
+Features include:
+
+- Interactive segment selector
+- RFM distributions
+- Customer segment profile
+- Recommended business actions
+- Sample customer records
+- Top monetary customers
+- Lowest monetary customers
+
+---
+
+## Business Strategy Simulator
+
+A scenario-based decision support tool designed for business users.
+
+Users can evaluate four strategic approaches:
+
+- Retain
+- Grow
+- Convert
+- Re-engage
+
+Each strategy presents:
+
+- Business objective
+- Estimated business impact
+- Recommended actions
+- Expected business outcomes
+- Success criteria
+
+The simulator demonstrates how different customer strategies may influence business performance.
+
+---
+
+# Machine Learning Workflow
+
+```
+Customer Transaction Data
+            │
+            ▼
+      Data Cleaning
+            │
+            ▼
+   Feature Engineering
+            │
+            ▼
+        RFM Analysis
+            │
+            ▼
+    Feature Scaling
+            │
+            ▼
+     K-Means Clustering
+            │
+            ▼
+ Customer Segmentation
+            │
+            ▼
+ Interactive Dashboard
+            │
+            ▼
+ Executive Decision Support
 ```
 
 ---
 
-## Project Status
+# Technologies Used
 
-### Completed
+### Programming
 
-* Data cleaning and preprocessing
-* RFM feature engineering
-* Exploratory data analysis
-* Data transformation
-* K-Means clustering
-* Segment profiling
-* Business insights and recommendations
+- Python
 
-### In Progress
+### Machine Learning
 
-* Interactive Streamlit application
-* Final project documentation
-* GitHub project packaging
+- Scikit-learn
+
+### Data Analysis
+
+- Pandas
+- NumPy
+
+### Data Visualisation
+
+- Plotly
+
+### Dashboard Development
+
+- Streamlit
+
+### Front-End
+
+- HTML
+- CSS
+- JavaScript
 
 ---
 
-## Next Phase
+# Key Features
 
-* Build an interactive Streamlit app
+- Interactive Executive Dashboard
+- Customer Segmentation using RFM Analysis
+- K-Means Customer Clustering
+- Dynamic KPI Cards
+- Interactive Segment Filtering
+- Executive Business Insights
+- Strategy Recommendation Simulator
+- Modern Custom UI Components
+- Responsive Desktop Experience
+
+---
+
+# Business Value
+
+The platform enables organisations to:
+
+- Identify high-value customers
+- Detect customers at risk of churn
+- Understand customer purchasing behaviour
+- Prioritise marketing investment
+- Improve customer retention strategies
+- Support executive decision-making
+- Transform analytics into actionable business recommendations
+
+---
+
+# Project Status
+
+**Version:** v1.0
+
+**Status:** ✅ Completed
+
+This project has been successfully developed, tested, documented, and deployed as a portfolio project.
+
+Future enhancements will be released as future versions.
+
+---
+
+# Future Improvements
+
+Potential future enhancements include:
+
+- AI-powered business copilot
+- Predictive customer lifetime value
+- Revenue forecasting
+- Multi-currency business metrics
+- Advanced scenario simulation
+- AI-generated executive summaries
+
+---
+
+# Run Locally
+
+Clone the repository
+
+```bash
+git clone <repository-url>
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the application
+
+```bash
+streamlit run app.py
+```
+
+---
+
+# Screenshots
+
+*Dashboard screenshots can be added here.*
+
+---
+
+# Author
+
+**Your Name**
+
+Business Intelligence • Data Analytics • Machine Learning
+
+---
+
+# License
+
+This project is licensed under the MIT License.
 * Add segment-level filtering and visual exploration
 * Prepare the repository for the portoflio presentation
