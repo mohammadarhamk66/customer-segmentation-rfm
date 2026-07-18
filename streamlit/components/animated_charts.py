@@ -1386,7 +1386,7 @@ def animated_business_insights():
                 <div class="strategy-eyebrow">Business Strategy Simulator</div>
 
                 <div class="strategy-title">
-                    Which customer strategy would you priortize?
+                    Which customer strategy would you prioritize?
                 </div>
 
                 <div class="strategy-subtitle">
@@ -1412,7 +1412,7 @@ def animated_business_insights():
 
                 <div class="scenario-questions">
                     Based on these customer behaviors, which strategy should the business
-                    priortize?
+                    prioritize?
                 </div>
             </div>
 
@@ -1588,7 +1588,7 @@ def animated_business_insights():
                 color: #4B5563;
             }
 
-            .scenario-question {
+            .scenario-questions {
                 margin-top: 14px;
                 padding: 11px 14px;
                 background: #FFF7ED;
@@ -1962,22 +1962,21 @@ def animated_business_insights():
                     "strategy-panel"
                 );
 
-                panel.classList.remove(
-                    "fade-content"
-                );
+                if(panel){
 
-                void panel.offsetWidth;
+                    panel.classList.remove("fade-content");
 
-                panel.classList.add(
-                    "fade-content"
-                );
+                    void panel.offsetWidth;
+
+                    panel.classList.add("fade-content")
+                }
 
                 root.style.setProperty("--active-color", s.color);
 
                 tabs.forEach(tab => {
                     const active = tab.dataset.key === key;
 
-                    tab.classlist.toggle("active", active);
+                    tab.classList.toggle("active", active);
 
                     tab.setAttribute(
                         "aria-pressed",
