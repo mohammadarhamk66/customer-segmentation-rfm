@@ -233,14 +233,7 @@ streamlit run app.py
 
 # Author
 
-**Your Name**
+Mohammad Arham Khan
 
 Business Intelligence • Data Analytics • Machine Learning
 
----
-
-# License
-
-This project is licensed under the MIT License.
-* Add segment-level filtering and visual exploration
-* Prepare the repository for the portoflio presentation
