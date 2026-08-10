@@ -4,5 +4,6 @@ matplotlib
 seaborn
 scikit-learn
 openpyxl
-streamlit
+streamlit>=1.32
+anthropic>=0.116
 jupyter

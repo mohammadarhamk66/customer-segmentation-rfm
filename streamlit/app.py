@@ -1,312 +1,46 @@
 import streamlit as st
-import streamlit.components.v1 as components
 
+from components.theme import apply_mobile_gate, apply_theme
+from utils.constants import APP_SUBTITLE, APP_TITLE
+from utils.data_loader import compute_kpis, load_data, scatter_sample
 from views.about_project import show_about_project
+from views.ai_analyst import show_ai_analyst
+from views.business_insights import show_business_insights
 from views.executive_overview import show_executive_overview
 from views.segment_explorer import show_segment_explorer
-from views.business_insights import show_business_insights
-from utils.data_loader import load_data
-
 
 st.set_page_config(
-    page_title="Customer Intelligence Platform",
+    page_title=APP_TITLE,
+    page_icon="◆",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-components.html(
-    """
-    <script>
-        const isMobile =
-            /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)
-            || window.innerWidth < 900;
+apply_theme()
+apply_mobile_gate()
 
-        if (isMobile) {
-            document.body.innerHTML = `
-            <div style="
-                height:100vh;
-                display:flex;
-                justify-content:center;
-                align-items:center;
-                background:#F3F6FA;
-                font-family:Inter,sans-serif;
-                padding:24px;
-                box-sizing:border-box;
-            ">
-                <div style="
-                    max-width:430px;
-                    background:white;
-                    border-radius:22px;
-                    padding:32px;
-                    text-align:center;
-                    box-shadow:0 18px 40px rgba(0,0,0,.08);
-                    border:1px solid #E5E7EB;
-                ">
-                    <div style="font-size:54px;">💻</div>
+rfm, cluster_profile = load_data()
+kpis = compute_kpis(rfm, cluster_profile)
+sample = scatter_sample(rfm)
 
-                    <h2 style="
-                        margin-top:14px;
-                        color:#111827;
-                    ">
-                        Desktop Experience Recommended
-                    </h2>
-
-                    <p style="
-                        color:#4B5563;
-                        line-height:1.7;
-                        font-size:15px;
-                    ">
-                        This interactive Customer Segmentation Dashboard has been
-                        designed and optimized for desktop and laptop browsers.
-
-                        <br><br>
-
-                        Please open the dashboard on a larger screen to experience
-                        all interactive visualizations and animations.
-                    </p>
-                </div>
-            </div>
-            `;
-        }
-    </script>
-    """,
-    height=0,
-)
-
-
-st.markdown(
-    """
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
-        html, body, [class*="css"] {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .main .block-container {
-            max-width: 1180px;
-            padding-top: 2.5rem;
-            padding-bottom: 3rem;
-        }
-
-        .stApp {
-            background:
-                radial-gradient(circle at 85% 8%, rgba(201,122,40,.08), transparent 28%),
-                linear-gradient(180deg, #FFFFFF 0%, #F3F6FA 100%);
-        }
-
-        h1, h2, h3 {
-            color: #111827;
-            letter-spacing: -0.03em;
-        }
-
-        [data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #172233 0%, #111827 100%);
-        }
-
-        [data-testid="stSidebar"] * {
-            color: #F9FAFB;
-        }
-
-        .sidebar-brand {
-            display: flex;
-            gap: 14px;
-            align-items: center;
-            padding: 18px 4px 22px 4px;
-        }
-
-        .brand-logo {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-            background:
-                radial-gradient(circle at 30% 25%, #F3A64A 0%, #D9822B 45%, #9A5A1F 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 14px 32px rgba(217,130,43,.28);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .brand-logo::before {
-            content: "";
-            position: absolute;
-            width: 34px;
-            height: 34px;
-            border: 2px solid rgba(255,255,255,.65);
-            border-radius: 10px;
-            transform: rotate(18deg);
-        }
-
-        .brand-logo::after {
-            content: "CI";
-            position: relative;
-            font-weight: 900;
-            font-size: 15px;
-            color: #FFFFFF;
-            letter-spacing: .04em;
-        }
-
-        .brand-title {
-            font-size: 17px;
-            font-weight: 850;
-            line-height: 1.15;
-            color: #FFFFFF;
-        }
-
-        .brand-subtitle {
-            font-size: 12px;
-            color: #CBD5E1;
-            margin-top: 6px;
-            line-height: 1.35;
-        }
-
-        .sidebar-divider {
-            height: 1px;
-            background: rgba(255,255,255,.14);
-            margin: 10px 0 22px 0;
-        }
-
-        .nav-label {
-            font-size: 11px;
-            font-weight: 800;
-            color: #94A3B8;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            margin: 0 0 10px 4px;
-        }
-
-        div[data-testid="stButton"] > button {
-            width: 100%;
-            border: none;
-            background: transparent;
-            color: #E5E7EB;
-            text-align: left;
-            justify-content: flex-start;
-            padding: 14px 16px;
-            border-radius: 16px;
-            font-size: 15px;
-            font-weight: 800;
-            transition: all .22s ease;
-            box-shadow: none;
-        }
-
-        div[data-testid="stButton"] > button:hover {
-            background: rgba(255,255,255,.08);
-            color: #FFFFFF;
-            transform: translateX(4px);
-        }
-
-        div[data-testid="stButton"] > button:focus {
-            box-shadow: none;
-            outline: none;
-        }
-
-        .active-nav {
-            background: rgba(217,130,43,.22);
-            border-left: 4px solid #D9822B;
-            border-radius: 16px;
-            padding: 0;
-            margin-bottom: 10px;
-            box-shadow: inset 0 0 0 1px rgba(217,130,43,.18);
-        }
-
-        .inactive-nav {
-            margin-bottom: 10px;
-        }
-
-        .mobile-blocker {
-            display: none;
-        }
-
-        @media (max-width: 900px) {
-            .mobile-blocker {
-                position: fixed;
-                inset: 0;
-                z-index: 9999999;
-                background: linear-gradient(180deg, #FFFFFF 0%, #F3F6FA 100%);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 24px;
-                box-sizing: border-box;
-            }
-
-            .mobile-warning-card {
-                max-width: 430px;
-                background: #FFFFFF;
-                border: 1px solid #E5E7EB;
-                border-radius: 22px;
-                padding: 32px;
-                text-align: center;
-                box-shadow: 0 18px 40px rgba(15,23,42,.10);
-            }
-
-            .mobile-warning-icon {
-                font-size: 52px;
-            margin-bottom: 14px;
-            }
-
-            .mobile-warning-card h2 {
-                margin: 0 0 10px 0;
-                color: #111827;
-                font-size: 24px;
-            }
-
-            .mobile-warning-card p {
-                color: #4B5563;
-                font-size: 15px;
-                line-height: 1.7;
-                margin: 0;
-            }
-        }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-st.markdown(
-    """
-    <div class="mobile-blocker">
-        <div class="mobile-warning-card">
-            <div class="mobile-warning-icon">💻</div>
-            <h2>Desktop Experience Recommended</h2>
-            <p>
-                This interactive customer segmentation dashboard is designed for
-                laptop and desktop browsers. Please open it on a larger screen
-                to experience the full interactive dashboard.
-            </p>
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-
-@st.cache_data
-def get_data():
-    return load_data()
-
-
-rfm, cluster_profile = get_data()
-
+NAV = [
+    ("About Project", "01", show_about_project),
+    ("Executive Overview", "02", show_executive_overview),
+    ("Segment Explorer", "03", show_segment_explorer),
+    ("Business Insights", "04", show_business_insights),
+    ("AI Analyst", "05", show_ai_analyst),
+]
 
 if "page" not in st.session_state:
     st.session_state.page = "About Project"
 
-
-def set_page(page_name):
-    st.session_state.page = page_name
-
-
 st.sidebar.markdown(
-    """
+    f"""
     <div class="sidebar-brand">
         <div class="brand-logo"></div>
         <div>
-            <div class="brand-title">Customer Intelligence Platform</div>
-            <div class="brand-subtitle">Customer Segmentation & Insights</div>
+            <div class="brand-title">{APP_TITLE}</div>
+            <div class="brand-subtitle">{APP_SUBTITLE}</div>
         </div>
     </div>
     <div class="sidebar-divider"></div>
@@ -315,42 +49,31 @@ st.sidebar.markdown(
     unsafe_allow_html=True,
 )
 
-
-nav_items = [
-    ("About Project", "01"),
-    ("Executive Overview", "02"),
-    ("Segment Explorer", "03"),
-    ("Business Insights", "04"),
-]
-
-
-for page_name, icon in nav_items:
-    wrapper_class = "active-nav" if st.session_state.page == page_name else "inactive-nav"
-
-    st.sidebar.markdown(f'<div class="{wrapper_class}">', unsafe_allow_html=True)
-
+for name, num, _ in NAV:
+    active = st.session_state.page == name
+    # `type` drives the kind="primary"/"secondary" attribute the CSS keys off —
+    # a wrapper <div> can't work here because Streamlit isolates each markdown block.
     if st.sidebar.button(
-        f"{icon}  {page_name}",
-        key=f"nav_{page_name}",
+        f"{num}   {name}",
+        key=f"nav_{name}",
         use_container_width=True,
+        type="primary" if active else "secondary",
     ):
-        set_page(page_name)
+        st.session_state.page = name
         st.rerun()
 
-    st.sidebar.markdown("</div>", unsafe_allow_html=True)
-
+st.sidebar.markdown(
+    f"""
+    <div class="sidebar-foot">
+        <b>{kpis['total_customers']:,} customers</b> · <b>{kpis['segments']} segments</b><br>
+        RFM analysis with K-Means clustering on the UCI Online Retail dataset.
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 page = st.session_state.page
-
-
-if page == "About Project":
-    show_about_project()
-
-elif page == "Executive Overview":
-    show_executive_overview(rfm, cluster_profile)
-
-elif page == "Segment Explorer":
-    show_segment_explorer(rfm, cluster_profile)
-
-elif page == "Business Insights":
-    show_business_insights(rfm, cluster_profile)
+for name, _, view in NAV:
+    if name == page:
+        view(rfm, cluster_profile, kpis, sample)
+        break

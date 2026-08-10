@@ -87,6 +87,28 @@ The simulator demonstrates how different customer strategies may influence busin
 
 ---
 
+
+## AI Analyst
+
+An analyst powered by the Claude API, connected live to the customer dataset.
+
+It answers questions in business terms and backs every figure with a real query.
+Three tools run against the dataframe on request:
+
+- `segment_overview` — the full profile of all four segments
+- `query_customers` — filters customers by recency, frequency, spend and segment
+- `compute_statistic` — medians, percentiles, standard deviations, correlations
+
+The model never receives the raw customer rows. It calls these tools, which run
+pandas locally and return compact summaries, so **every number it quotes is
+computed on request rather than recalled** — and token cost stays flat regardless
+of dataset size.
+
+Without an API key the page still works: it reports the pre-computed segment
+profile and states plainly that it is running offline.
+
+---
+
 # Machine Learning Workflow
 
 ```
@@ -146,7 +168,11 @@ Customer Transaction Data
 
 - HTML
 - CSS
-- JavaScript
+- JavaScript (custom design system — no chart or animation libraries)
+
+### AI
+
+- Anthropic Claude API (`claude-opus-5`) with tool use
 
 ---
 
@@ -160,6 +186,9 @@ Customer Transaction Data
 - Executive Business Insights
 - Strategy Recommendation Simulator
 - Modern Custom UI Components
+- Glassmorphic 3D Interface with Motion Design
+- Interactive 3D RFM Customer Cloud
+- AI Analyst with Live Dataset Access
 - Responsive Desktop Experience
 
 ---
@@ -180,11 +209,15 @@ The platform enables organisations to:
 
 # Project Status
 
-**Version:** v1.0
+**Version:** v2.0
 
 **Status:** ✅ Completed
 
 This project has been successfully developed, tested, documented, and deployed as a portfolio project.
+
+**v2.0** rebuilt the interface on a custom glassmorphic 3D design system and added
+the AI Analyst. **v1.0** delivered the segmentation analysis and the original
+dashboard.
 
 Future enhancements will be released as future versions.
 
@@ -194,7 +227,6 @@ Future enhancements will be released as future versions.
 
 Potential future enhancements include:
 
-- AI-powered business copilot
 - Predictive customer lifetime value
 - Revenue forecasting
 - Multi-currency business metrics
@@ -217,10 +249,20 @@ Install dependencies
 pip install -r requirements.txt
 ```
 
+Configure the AI Analyst (optional)
+
+```toml
+# .streamlit/secrets.toml
+ANTHROPIC_API_KEY = "sk-ant-..."
+```
+
+On Streamlit Community Cloud, add the same key under **Settings → Secrets**.
+The app runs without it — the AI Analyst falls back to offline mode.
+
 Run the application
 
 ```bash
-streamlit run app.py
+streamlit run streamlit/app.py
 ```
 
 ---
